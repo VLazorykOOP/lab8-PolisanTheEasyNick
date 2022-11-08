@@ -11,8 +11,8 @@ string pattern = @"[\d]{4}[.][\d]{2}[.][\d]{2}[:][\d]{2}[:][\d]{2}[:][\d]{2}";
 
 MatchCollection matches = Regex.Matches(text1, pattern, RegexOptions.Multiline);
 Console.WriteLine("Matches: " + matches.Count);
-int normalDates = 0;
 var dates = new List<string>();
+
 foreach (Match match in matches)
 {
     string patt2 = @"(\d+)[.](\d+)[.](\d+)[:](\d+)[:](\d+)[:](\d+)";
@@ -41,7 +41,6 @@ foreach (Match match in matches)
 
         Console.WriteLine($"Normal date: {year}.{month}.{day} {hour}:{min}:{sec}");
         dates.Add($"{year}.{month}.{day} {hour}:{min}:{sec}");
-        normalDates++;
     }
 }
 
@@ -119,7 +118,13 @@ var fileout3 = new StreamWriter(new FileStream("/home/ob3r0n/Desktop/lab3.12.Out
 fileout3.WriteLine(text32Copy);
 fileout3.Close();
 
-var numbers = new List<double>{1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
+Console.WriteLine("Введіть n: ");
+int.TryParse(Console.ReadLine(), out var n);
+var numbers = new List<double>();
+for (var i = 0; i < n; i++)
+{
+    numbers.Add(int.Parse(Console.ReadLine()));
+}
 var fileout4 = new BinaryWriter(new FileStream("/home/ob3r0n/Desktop/lab8.4.12In",
     FileMode.Create,
     FileAccess.Write));
